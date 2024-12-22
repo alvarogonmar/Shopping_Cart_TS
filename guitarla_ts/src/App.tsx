@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Guitar from "./components/Guitar";
 import Header from "./components/Header"; // Importar el componente
 import { useCart } from "./hooks/useCart";
@@ -24,6 +23,8 @@ function App() {
         increaseQuantity={increaseQuantity}
         decreaseQuantity={decreaseQuantity}
         clearCart={clearCart}
+        isEmpty={isEmpty}
+        cartTotal={cartTotal}
       />
 
       <main className="container-xl mt-5">

@@ -1,9 +1,10 @@
 import { useState, useEffect, useMemo } from "react"
 import { db } from '../data/db'
+import type { Guitar, CartItem } from "../types"
 
 export const useCart = () => {
     
-    const initialCart = () => {
+    const initialCart = () : CartItem[] => {
         const localStorageCart = localStorage.getItem('cart')
         return localStorageCart ? JSON.parse(localStorageCart) : []
     }
@@ -16,7 +17,7 @@ export const useCart = () => {
         localStorage.setItem('cart', JSON.stringify(cart))
     }, [cart])
 
-    function addToCart(item){
+    function addToCart(item : Guitar){
         // Agregar items al carrito
         const itemExists = cart.findIndex(guitar => guitar.id === item.id)
         if(itemExists >= 0){ // existe en el carrito
@@ -25,16 +26,16 @@ export const useCart = () => {
             updatedCart[itemExists].quantity++
             setCart(updatedCart)
         } else{
-            item.quantity = 1
-            setCart([...cart, item])   
+            const newItem : CartItem = {...item, quantity : 1}
+            setCart([...cart, newItem])   
         }
     }
     
-    function removeFromCart(id){
+    function removeFromCart(id: Guitar['id']){
         setCart(prevCart => prevCart.filter(guitar => guitar.id !== id)) // Filtrar y "traer" las guitarras diferente a la del id que estoy quitando
     }
 
-    function increaseQuantity(id) {
+    function increaseQuantity(id: Guitar['id']) {
         const updatedCart = cart.map( item => {
             if(item.id === id && item.quantity < MAX_ITEMS) {
                 return {
@@ -47,7 +48,7 @@ export const useCart = () => {
         setCart(updatedCart)
     }
 
-    function decreaseQuantity(id){
+    function decreaseQuantity(id : Guitar['id']){
         const updatedCart = cart.map( item => {
             if(item.id === id && item.quantity > 1 && item.quantity <= MAX_ITEMS){
                 return {
@@ -60,13 +61,13 @@ export const useCart = () => {
         setCart(updatedCart)
     }
 
-    function clearCart (e) {
+    function clearCart () {
         setCart([])
     }
 
     // State Derivado
     const isEmpty = useMemo( () => cart.length === 0, [cart])
-    const cartTotal = useMemo ( () => cart.reduce((total, item ) => total + (item.quantity * item.price), 0))
+    const cartTotal = useMemo ( () => cart.reduce((total, item ) => total + (item.quantity * item.price), 0), [cart])
 
     return {
         data,
