@@ -1,34 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Guitar from "./components/Guitar"
+import Header from "./components/Header" // Importar el componente
+import { useCart } from "./hooks/useCart"
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    const {data, cart, addToCart, removeFromCart, decreaseQuantity, increaseQuantity, clearCart, isEmpty, cartTotal} = useCart()
+    
+    return (
+        <>
+         
+        <Header 
+            cart={cart}
+            removeFromCart={removeFromCart}
+            increaseQuantity={increaseQuantity}
+            decreaseQuantity={decreaseQuantity}
+            clearCart={clearCart}
+
+        />
+        
+        <main className="container-xl mt-5"> 
+            <h2 className="text-center">Our Collection</h2>
+
+            <div className="row mt-5">
+                {data.map((guitar) => ( /**  AQUI se manda llamar el elemento de nuestra
+                base de datos, cada elemento se mostrara, sea la cantidd que sea y se escribe
+                entre llaves porque es codigo de JavaScript */
+                    <Guitar
+                        key={guitar.id} // Prop especial que siempre debes usar cuando iteres en una lista y pasarle un valor unico (ej image, name, id)
+
+                        // Props - Permiten pasar informacion, crear componentes reutilizables
+                        guitar={guitar} // nombreProp = {valor}
+                        addToCart={addToCart}
+                    />
+                ))}
+
+            </div>
+        </main>
+
+
+        <footer className="bg-dark mt-5 py-5">
+            <div className="container-xl">
+                <p className="text-white text-center fs-4 mt-4 m-md-0">GuitarLA - All rights reserved</p>
+            </div>
+        </footer>
+        </>
   )
 }
 
