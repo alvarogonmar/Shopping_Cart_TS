@@ -7,7 +7,6 @@ import { cartReducer, initialState } from "./reducers/cart-reducer";
 function App() {
   const {
     cart,
-    addToCart,
     removeFromCart,
     decreaseQuantity,
     increaseQuantity,
