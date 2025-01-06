@@ -16,5 +16,6 @@ The web application allows users to explore a guitar catalog, view details, and 
   - Clear the cart entirely.
 - **Data Persistence**: The cart state is saved in Local Storage, ensuring selected products remain available across sessions.
 - **Total Calculation**: The application automatically calculates the total cost of the products in the cart.
+- **State Management**: Uses `useReducer` for managing cart state.
 
 Check out the web application here: [https://guitarlashoppp.netlify.app/](https://guitarlashoppp.netlify.app/)
