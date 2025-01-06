@@ -1,4 +1,4 @@
-import { Guitar
+import { CartItem, Guitar
 
  } from "../types"
 export type CartActions =
@@ -8,3 +8,7 @@ export type CartActions =
     { type: "increase-quantity", payload: {id : Guitar['id']}} | 
     { type: "clear-cart"}   
 
+export type CartState = {
+    data: Guitar[],
+    cart: CartItem[]
+}
