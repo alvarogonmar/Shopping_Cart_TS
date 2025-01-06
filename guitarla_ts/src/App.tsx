@@ -6,7 +6,6 @@ import { cartReducer, initialState } from "./reducers/cart-reducer";
 
 function App() {
   const {
-    data,
     cart,
     addToCart,
     removeFromCart,
@@ -19,7 +18,6 @@ function App() {
 
   const [state, dispatch] = useReducer(cartReducer, initialState);
 
-  console.log(state);
   return (
     <>
       <Header
@@ -36,7 +34,7 @@ function App() {
         <h2 className="text-center">Our Collection</h2>
 
         <div className="row mt-5">
-          {data.map(
+          {state.data.map(
             (
               guitar /**  AQUI se manda llamar el elemento de nuestra
                 base de datos, cada elemento se mostrara, sea la cantidd que sea y se escribe
