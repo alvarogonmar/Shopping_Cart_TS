@@ -16,10 +16,6 @@ export const useCart = () => {
         localStorage.setItem('cart', JSON.stringify(cart))
     }, [cart])
 
-    function removeFromCart(id: Guitar['id']){
-        setCart(prevCart => prevCart.filter(guitar => guitar.id !== id)) // Filtrar y "traer" las guitarras diferente a la del id que estoy quitando
-    }
-
     function increaseQuantity(id: Guitar['id']) {
         const updatedCart = cart.map( item => {
             if(item.id === id && item.quantity < MAX_ITEMS) {
@@ -52,7 +48,6 @@ export const useCart = () => {
 
     return {
         cart,
-        removeFromCart,
         decreaseQuantity,
         increaseQuantity,
         clearCart
