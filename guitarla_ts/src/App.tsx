@@ -44,7 +44,7 @@ function App() {
                 key={guitar.id} // Prop especial que siempre debes usar cuando iteres en una lista y pasarle un valor unico (ej image, name, id)
                 // Props - Permiten pasar informacion, crear componentes reutilizables
                 guitar={guitar} // nombreProp = {valor}
-                addToCart={addToCart}
+                dispatch={dispatch}
               />
             )
           )}
