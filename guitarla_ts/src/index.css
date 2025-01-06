@@ -775,3 +775,13 @@ button:not(:disabled),
     z-index: 10;
   }
 }
+
+.icon-small {
+  width: 30px;
+  height: 30px;
+  margin-right: 18px;
+}
+
+.bold-text {
+  font-weight: bold;
+}
