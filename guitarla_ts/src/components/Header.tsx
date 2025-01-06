@@ -11,10 +11,9 @@ import type { CartActions } from "../reducers/cart-reducer";
 type HeaderProps = {
   cart: CartItem[];
   dispatch: Dispatch<CartActions>;
-  clearCart: () => void;
 };
 
-export default function Header({ cart, dispatch, clearCart }: HeaderProps) {
+export default function Header({ cart, dispatch }: HeaderProps) {
   // Exportarlo para poderlo importar en otros componentes
   // State o Funciones
 
@@ -130,7 +129,7 @@ export default function Header({ cart, dispatch, clearCart }: HeaderProps) {
                     </p>
                     <button
                       className="btn btn-dark w-100 mt-3 p-2"
-                      onClick={clearCart}
+                      onClick={() => dispatch({ type: "clear-cart" })}
                     >
                       Empty Cart
                     </button>
